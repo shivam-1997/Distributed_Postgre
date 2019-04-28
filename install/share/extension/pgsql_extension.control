@@ -1,0 +1,4 @@
+# pgsql_extension extension
+comment = 'pgsql_extension datatype'
+default_version = '0.0.1'
+relocatable = truw

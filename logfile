@@ -1,0 +1,442 @@
+2019-01-26 00:33:32.727 IST [4184] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2019-01-26 00:33:32.794 IST [4184] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2019-01-26 00:33:32.908 IST [4185] LOG:  database system was shut down at 2019-01-26 00:33:04 IST
+2019-01-26 00:33:32.943 IST [4184] LOG:  database system is ready to accept connections
+2019-01-26 01:41:41.808 IST [4184] LOG:  received fast shutdown request
+2019-01-26 01:41:41.847 IST [4184] LOG:  aborting any active transactions
+2019-01-26 01:41:41.848 IST [4184] LOG:  background worker "logical replication launcher" (PID 4191) exited with exit code 1
+2019-01-26 01:41:41.849 IST [4186] LOG:  shutting down
+2019-01-26 01:41:42.004 IST [4184] LOG:  database system is shut down
+2019-02-04 22:20:16.107 IST [16911] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2019-02-04 22:20:16.185 IST [16911] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2019-02-04 22:20:16.299 IST [16912] LOG:  database system was shut down at 2019-02-03 22:18:16 IST
+2019-02-04 22:20:16.400 IST [16911] LOG:  database system is ready to accept connections
+2019-02-04 22:35:45.816 IST [17997] FATAL:  lock file "postmaster.pid" already exists
+2019-02-04 22:35:45.816 IST [17997] HINT:  Is another postmaster (PID 16911) running in data directory "/home/rahulsharma/Desktop/PostGreSQl/postgresql-11.1/install/data"?
+2019-02-04 22:37:42.327 IST [18001] ERROR:  syntax error at or near "psql" at character 1
+2019-02-04 22:37:42.327 IST [18001] STATEMENT:  psql -h localhost -p 5432 -d postgres -f home/rahulsharma/Desktop/PostGreSQl/University_Schema_Data/smallRelationsInsertFile.sql
+	;
+2019-02-04 22:38:55.592 IST [18032] ERROR:  relation "prereq" does not exist at character 13
+2019-02-04 22:38:55.592 IST [18032] STATEMENT:  delete from prereq;
+2019-02-04 22:38:55.592 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.592 IST [18032] STATEMENT:  delete from time_slot;
+2019-02-04 22:38:55.593 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.593 IST [18032] STATEMENT:  delete from advisor;
+2019-02-04 22:38:55.593 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.593 IST [18032] STATEMENT:  delete from takes;
+2019-02-04 22:38:55.593 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.593 IST [18032] STATEMENT:  delete from student;
+2019-02-04 22:38:55.594 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.594 IST [18032] STATEMENT:  delete from teaches;
+2019-02-04 22:38:55.594 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.594 IST [18032] STATEMENT:  delete from section;
+2019-02-04 22:38:55.594 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.594 IST [18032] STATEMENT:  delete from instructor;
+2019-02-04 22:38:55.594 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.594 IST [18032] STATEMENT:  delete from course;
+2019-02-04 22:38:55.595 IST [18032] ERROR:  relation "department" does not exist at character 13
+2019-02-04 22:38:55.595 IST [18032] STATEMENT:  delete from department;
+2019-02-04 22:38:55.595 IST [18032] ERROR:  relation "classroom" does not exist at character 13
+2019-02-04 22:38:55.595 IST [18032] STATEMENT:  delete from classroom;
+2019-02-04 22:38:55.595 IST [18032] ERROR:  relation "classroom" does not exist at character 13
+2019-02-04 22:38:55.595 IST [18032] STATEMENT:  insert into classroom values ('Packard', '101', '500');
+2019-02-04 22:38:55.596 IST [18032] ERROR:  relation "classroom" does not exist at character 13
+2019-02-04 22:38:55.596 IST [18032] STATEMENT:  insert into classroom values ('Painter', '514', '10');
+2019-02-04 22:38:55.596 IST [18032] ERROR:  relation "classroom" does not exist at character 13
+2019-02-04 22:38:55.596 IST [18032] STATEMENT:  insert into classroom values ('Taylor', '3128', '70');
+2019-02-04 22:38:55.596 IST [18032] ERROR:  relation "classroom" does not exist at character 13
+2019-02-04 22:38:55.596 IST [18032] STATEMENT:  insert into classroom values ('Watson', '100', '30');
+2019-02-04 22:38:55.596 IST [18032] ERROR:  relation "classroom" does not exist at character 13
+2019-02-04 22:38:55.596 IST [18032] STATEMENT:  insert into classroom values ('Watson', '120', '50');
+2019-02-04 22:38:55.597 IST [18032] ERROR:  relation "department" does not exist at character 13
+2019-02-04 22:38:55.597 IST [18032] STATEMENT:  insert into department values ('Biology', 'Watson', '90000');
+2019-02-04 22:38:55.597 IST [18032] ERROR:  relation "department" does not exist at character 13
+2019-02-04 22:38:55.597 IST [18032] STATEMENT:  insert into department values ('Comp. Sci.', 'Taylor', '100000');
+2019-02-04 22:38:55.597 IST [18032] ERROR:  relation "department" does not exist at character 13
+2019-02-04 22:38:55.597 IST [18032] STATEMENT:  insert into department values ('Elec. Eng.', 'Taylor', '85000');
+2019-02-04 22:38:55.597 IST [18032] ERROR:  relation "department" does not exist at character 13
+2019-02-04 22:38:55.597 IST [18032] STATEMENT:  insert into department values ('Finance', 'Painter', '120000');
+2019-02-04 22:38:55.598 IST [18032] ERROR:  relation "department" does not exist at character 13
+2019-02-04 22:38:55.598 IST [18032] STATEMENT:  insert into department values ('History', 'Painter', '50000');
+2019-02-04 22:38:55.598 IST [18032] ERROR:  relation "department" does not exist at character 13
+2019-02-04 22:38:55.598 IST [18032] STATEMENT:  insert into department values ('Music', 'Packard', '80000');
+2019-02-04 22:38:55.598 IST [18032] ERROR:  relation "department" does not exist at character 13
+2019-02-04 22:38:55.598 IST [18032] STATEMENT:  insert into department values ('Physics', 'Watson', '70000');
+2019-02-04 22:38:55.598 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.598 IST [18032] STATEMENT:  insert into course values ('BIO-101', 'Intro. to Biology', 'Biology', '4');
+2019-02-04 22:38:55.598 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.598 IST [18032] STATEMENT:  insert into course values ('BIO-301', 'Genetics', 'Biology', '4');
+2019-02-04 22:38:55.598 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.598 IST [18032] STATEMENT:  insert into course values ('BIO-399', 'Computational Biology', 'Biology', '3');
+2019-02-04 22:38:55.598 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.598 IST [18032] STATEMENT:  insert into course values ('CS-101', 'Intro. to Computer Science', 'Comp. Sci.', '4');
+2019-02-04 22:38:55.598 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.598 IST [18032] STATEMENT:  insert into course values ('CS-190', 'Game Design', 'Comp. Sci.', '4');
+2019-02-04 22:38:55.599 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.599 IST [18032] STATEMENT:  insert into course values ('CS-315', 'Robotics', 'Comp. Sci.', '3');
+2019-02-04 22:38:55.599 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.599 IST [18032] STATEMENT:  insert into course values ('CS-319', 'Image Processing', 'Comp. Sci.', '3');
+2019-02-04 22:38:55.599 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.599 IST [18032] STATEMENT:  insert into course values ('CS-347', 'Database System Concepts', 'Comp. Sci.', '3');
+2019-02-04 22:38:55.599 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.599 IST [18032] STATEMENT:  insert into course values ('EE-181', 'Intro. to Digital Systems', 'Elec. Eng.', '3');
+2019-02-04 22:38:55.599 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.599 IST [18032] STATEMENT:  insert into course values ('FIN-201', 'Investment Banking', 'Finance', '3');
+2019-02-04 22:38:55.599 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.599 IST [18032] STATEMENT:  insert into course values ('HIS-351', 'World History', 'History', '3');
+2019-02-04 22:38:55.599 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.599 IST [18032] STATEMENT:  insert into course values ('MU-199', 'Music Video Production', 'Music', '3');
+2019-02-04 22:38:55.599 IST [18032] ERROR:  relation "course" does not exist at character 13
+2019-02-04 22:38:55.599 IST [18032] STATEMENT:  insert into course values ('PHY-101', 'Physical Principles', 'Physics', '4');
+2019-02-04 22:38:55.600 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.600 IST [18032] STATEMENT:  insert into instructor values ('10101', 'Srinivasan', 'Comp. Sci.', '65000');
+2019-02-04 22:38:55.600 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.600 IST [18032] STATEMENT:  insert into instructor values ('12121', 'Wu', 'Finance', '90000');
+2019-02-04 22:38:55.600 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.600 IST [18032] STATEMENT:  insert into instructor values ('15151', 'Mozart', 'Music', '40000');
+2019-02-04 22:38:55.600 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.600 IST [18032] STATEMENT:  insert into instructor values ('22222', 'Einstein', 'Physics', '95000');
+2019-02-04 22:38:55.601 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.601 IST [18032] STATEMENT:  insert into instructor values ('32343', 'El Said', 'History', '60000');
+2019-02-04 22:38:55.601 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.601 IST [18032] STATEMENT:  insert into instructor values ('33456', 'Gold', 'Physics', '87000');
+2019-02-04 22:38:55.601 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.601 IST [18032] STATEMENT:  insert into instructor values ('45565', 'Katz', 'Comp. Sci.', '75000');
+2019-02-04 22:38:55.601 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.601 IST [18032] STATEMENT:  insert into instructor values ('58583', 'Califieri', 'History', '62000');
+2019-02-04 22:38:55.602 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.602 IST [18032] STATEMENT:  insert into instructor values ('76543', 'Singh', 'Finance', '80000');
+2019-02-04 22:38:55.602 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.602 IST [18032] STATEMENT:  insert into instructor values ('76766', 'Crick', 'Biology', '72000');
+2019-02-04 22:38:55.602 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.602 IST [18032] STATEMENT:  insert into instructor values ('83821', 'Brandt', 'Comp. Sci.', '92000');
+2019-02-04 22:38:55.602 IST [18032] ERROR:  relation "instructor" does not exist at character 13
+2019-02-04 22:38:55.602 IST [18032] STATEMENT:  insert into instructor values ('98345', 'Kim', 'Elec. Eng.', '80000');
+2019-02-04 22:38:55.602 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.602 IST [18032] STATEMENT:  insert into section values ('BIO-101', '1', 'Summer', '2009', 'Painter', '514', 'B');
+2019-02-04 22:38:55.603 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.603 IST [18032] STATEMENT:  insert into section values ('BIO-301', '1', 'Summer', '2010', 'Painter', '514', 'A');
+2019-02-04 22:38:55.603 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.603 IST [18032] STATEMENT:  insert into section values ('CS-101', '1', 'Fall', '2009', 'Packard', '101', 'H');
+2019-02-04 22:38:55.603 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.603 IST [18032] STATEMENT:  insert into section values ('CS-101', '1', 'Spring', '2010', 'Packard', '101', 'F');
+2019-02-04 22:38:55.603 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.603 IST [18032] STATEMENT:  insert into section values ('CS-190', '1', 'Spring', '2009', 'Taylor', '3128', 'E');
+2019-02-04 22:38:55.604 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.604 IST [18032] STATEMENT:  insert into section values ('CS-190', '2', 'Spring', '2009', 'Taylor', '3128', 'A');
+2019-02-04 22:38:55.604 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.604 IST [18032] STATEMENT:  insert into section values ('CS-315', '1', 'Spring', '2010', 'Watson', '120', 'D');
+2019-02-04 22:38:55.604 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.604 IST [18032] STATEMENT:  insert into section values ('CS-319', '1', 'Spring', '2010', 'Watson', '100', 'B');
+2019-02-04 22:38:55.604 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.604 IST [18032] STATEMENT:  insert into section values ('CS-319', '2', 'Spring', '2010', 'Taylor', '3128', 'C');
+2019-02-04 22:38:55.604 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.604 IST [18032] STATEMENT:  insert into section values ('CS-347', '1', 'Fall', '2009', 'Taylor', '3128', 'A');
+2019-02-04 22:38:55.604 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.604 IST [18032] STATEMENT:  insert into section values ('EE-181', '1', 'Spring', '2009', 'Taylor', '3128', 'C');
+2019-02-04 22:38:55.605 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.605 IST [18032] STATEMENT:  insert into section values ('FIN-201', '1', 'Spring', '2010', 'Packard', '101', 'B');
+2019-02-04 22:38:55.605 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.605 IST [18032] STATEMENT:  insert into section values ('HIS-351', '1', 'Spring', '2010', 'Painter', '514', 'C');
+2019-02-04 22:38:55.605 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.605 IST [18032] STATEMENT:  insert into section values ('MU-199', '1', 'Spring', '2010', 'Packard', '101', 'D');
+2019-02-04 22:38:55.605 IST [18032] ERROR:  relation "section" does not exist at character 13
+2019-02-04 22:38:55.605 IST [18032] STATEMENT:  insert into section values ('PHY-101', '1', 'Fall', '2009', 'Watson', '100', 'A');
+2019-02-04 22:38:55.605 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.605 IST [18032] STATEMENT:  insert into teaches values ('10101', 'CS-101', '1', 'Fall', '2009');
+2019-02-04 22:38:55.605 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.605 IST [18032] STATEMENT:  insert into teaches values ('10101', 'CS-315', '1', 'Spring', '2010');
+2019-02-04 22:38:55.606 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.606 IST [18032] STATEMENT:  insert into teaches values ('10101', 'CS-347', '1', 'Fall', '2009');
+2019-02-04 22:38:55.606 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.606 IST [18032] STATEMENT:  insert into teaches values ('12121', 'FIN-201', '1', 'Spring', '2010');
+2019-02-04 22:38:55.606 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.606 IST [18032] STATEMENT:  insert into teaches values ('15151', 'MU-199', '1', 'Spring', '2010');
+2019-02-04 22:38:55.606 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.606 IST [18032] STATEMENT:  insert into teaches values ('22222', 'PHY-101', '1', 'Fall', '2009');
+2019-02-04 22:38:55.606 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.606 IST [18032] STATEMENT:  insert into teaches values ('32343', 'HIS-351', '1', 'Spring', '2010');
+2019-02-04 22:38:55.606 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.606 IST [18032] STATEMENT:  insert into teaches values ('45565', 'CS-101', '1', 'Spring', '2010');
+2019-02-04 22:38:55.606 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.606 IST [18032] STATEMENT:  insert into teaches values ('45565', 'CS-319', '1', 'Spring', '2010');
+2019-02-04 22:38:55.607 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.607 IST [18032] STATEMENT:  insert into teaches values ('76766', 'BIO-101', '1', 'Summer', '2009');
+2019-02-04 22:38:55.607 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.607 IST [18032] STATEMENT:  insert into teaches values ('76766', 'BIO-301', '1', 'Summer', '2010');
+2019-02-04 22:38:55.607 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.607 IST [18032] STATEMENT:  insert into teaches values ('83821', 'CS-190', '1', 'Spring', '2009');
+2019-02-04 22:38:55.607 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.607 IST [18032] STATEMENT:  insert into teaches values ('83821', 'CS-190', '2', 'Spring', '2009');
+2019-02-04 22:38:55.607 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.607 IST [18032] STATEMENT:  insert into teaches values ('83821', 'CS-319', '2', 'Spring', '2010');
+2019-02-04 22:38:55.607 IST [18032] ERROR:  relation "teaches" does not exist at character 13
+2019-02-04 22:38:55.607 IST [18032] STATEMENT:  insert into teaches values ('98345', 'EE-181', '1', 'Spring', '2009');
+2019-02-04 22:38:55.608 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.608 IST [18032] STATEMENT:  insert into student values ('00128', 'Zhang', 'Comp. Sci.', '102');
+2019-02-04 22:38:55.608 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.608 IST [18032] STATEMENT:  insert into student values ('12345', 'Shankar', 'Comp. Sci.', '32');
+2019-02-04 22:38:55.608 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.608 IST [18032] STATEMENT:  insert into student values ('19991', 'Brandt', 'History', '80');
+2019-02-04 22:38:55.608 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.608 IST [18032] STATEMENT:  insert into student values ('23121', 'Chavez', 'Finance', '110');
+2019-02-04 22:38:55.608 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.608 IST [18032] STATEMENT:  insert into student values ('44553', 'Peltier', 'Physics', '56');
+2019-02-04 22:38:55.609 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.609 IST [18032] STATEMENT:  insert into student values ('45678', 'Levy', 'Physics', '46');
+2019-02-04 22:38:55.609 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.609 IST [18032] STATEMENT:  insert into student values ('54321', 'Williams', 'Comp. Sci.', '54');
+2019-02-04 22:38:55.609 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.609 IST [18032] STATEMENT:  insert into student values ('55739', 'Sanchez', 'Music', '38');
+2019-02-04 22:38:55.609 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.609 IST [18032] STATEMENT:  insert into student values ('70557', 'Snow', 'Physics', '0');
+2019-02-04 22:38:55.610 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.610 IST [18032] STATEMENT:  insert into student values ('76543', 'Brown', 'Comp. Sci.', '58');
+2019-02-04 22:38:55.610 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.610 IST [18032] STATEMENT:  insert into student values ('76653', 'Aoi', 'Elec. Eng.', '60');
+2019-02-04 22:38:55.610 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.610 IST [18032] STATEMENT:  insert into student values ('98765', 'Bourikas', 'Elec. Eng.', '98');
+2019-02-04 22:38:55.610 IST [18032] ERROR:  relation "student" does not exist at character 13
+2019-02-04 22:38:55.610 IST [18032] STATEMENT:  insert into student values ('98988', 'Tanaka', 'Biology', '120');
+2019-02-04 22:38:55.610 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.610 IST [18032] STATEMENT:  insert into takes values ('00128', 'CS-101', '1', 'Fall', '2009', 'A');
+2019-02-04 22:38:55.610 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.610 IST [18032] STATEMENT:  insert into takes values ('00128', 'CS-347', '1', 'Fall', '2009', 'A-');
+2019-02-04 22:38:55.611 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.611 IST [18032] STATEMENT:  insert into takes values ('12345', 'CS-101', '1', 'Fall', '2009', 'C');
+2019-02-04 22:38:55.611 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.611 IST [18032] STATEMENT:  insert into takes values ('12345', 'CS-190', '2', 'Spring', '2009', 'A');
+2019-02-04 22:38:55.611 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.611 IST [18032] STATEMENT:  insert into takes values ('12345', 'CS-315', '1', 'Spring', '2010', 'A');
+2019-02-04 22:38:55.611 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.611 IST [18032] STATEMENT:  insert into takes values ('12345', 'CS-347', '1', 'Fall', '2009', 'A');
+2019-02-04 22:38:55.612 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.612 IST [18032] STATEMENT:  insert into takes values ('19991', 'HIS-351', '1', 'Spring', '2010', 'B');
+2019-02-04 22:38:55.612 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.612 IST [18032] STATEMENT:  insert into takes values ('23121', 'FIN-201', '1', 'Spring', '2010', 'C+');
+2019-02-04 22:38:55.612 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.612 IST [18032] STATEMENT:  insert into takes values ('44553', 'PHY-101', '1', 'Fall', '2009', 'B-');
+2019-02-04 22:38:55.612 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.612 IST [18032] STATEMENT:  insert into takes values ('45678', 'CS-101', '1', 'Fall', '2009', 'F');
+2019-02-04 22:38:55.613 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.613 IST [18032] STATEMENT:  insert into takes values ('45678', 'CS-101', '1', 'Spring', '2010', 'B+');
+2019-02-04 22:38:55.613 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.613 IST [18032] STATEMENT:  insert into takes values ('45678', 'CS-319', '1', 'Spring', '2010', 'B');
+2019-02-04 22:38:55.613 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.613 IST [18032] STATEMENT:  insert into takes values ('54321', 'CS-101', '1', 'Fall', '2009', 'A-');
+2019-02-04 22:38:55.613 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.613 IST [18032] STATEMENT:  insert into takes values ('54321', 'CS-190', '2', 'Spring', '2009', 'B+');
+2019-02-04 22:38:55.614 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.614 IST [18032] STATEMENT:  insert into takes values ('55739', 'MU-199', '1', 'Spring', '2010', 'A-');
+2019-02-04 22:38:55.614 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.614 IST [18032] STATEMENT:  insert into takes values ('76543', 'CS-101', '1', 'Fall', '2009', 'A');
+2019-02-04 22:38:55.614 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.614 IST [18032] STATEMENT:  insert into takes values ('76543', 'CS-319', '2', 'Spring', '2010', 'A');
+2019-02-04 22:38:55.614 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.614 IST [18032] STATEMENT:  insert into takes values ('76653', 'EE-181', '1', 'Spring', '2009', 'C');
+2019-02-04 22:38:55.614 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.614 IST [18032] STATEMENT:  insert into takes values ('98765', 'CS-101', '1', 'Fall', '2009', 'C-');
+2019-02-04 22:38:55.615 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.615 IST [18032] STATEMENT:  insert into takes values ('98765', 'CS-315', '1', 'Spring', '2010', 'B');
+2019-02-04 22:38:55.615 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.615 IST [18032] STATEMENT:  insert into takes values ('98988', 'BIO-101', '1', 'Summer', '2009', 'A');
+2019-02-04 22:38:55.615 IST [18032] ERROR:  relation "takes" does not exist at character 13
+2019-02-04 22:38:55.615 IST [18032] STATEMENT:  insert into takes values ('98988', 'BIO-301', '1', 'Summer', '2010', null);
+2019-02-04 22:38:55.615 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.615 IST [18032] STATEMENT:  insert into advisor values ('00128', '45565');
+2019-02-04 22:38:55.616 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.616 IST [18032] STATEMENT:  insert into advisor values ('12345', '10101');
+2019-02-04 22:38:55.616 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.616 IST [18032] STATEMENT:  insert into advisor values ('23121', '76543');
+2019-02-04 22:38:55.616 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.616 IST [18032] STATEMENT:  insert into advisor values ('44553', '22222');
+2019-02-04 22:38:55.616 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.616 IST [18032] STATEMENT:  insert into advisor values ('45678', '22222');
+2019-02-04 22:38:55.616 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.616 IST [18032] STATEMENT:  insert into advisor values ('76543', '45565');
+2019-02-04 22:38:55.617 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.617 IST [18032] STATEMENT:  insert into advisor values ('76653', '98345');
+2019-02-04 22:38:55.617 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.617 IST [18032] STATEMENT:  insert into advisor values ('98765', '98345');
+2019-02-04 22:38:55.617 IST [18032] ERROR:  relation "advisor" does not exist at character 13
+2019-02-04 22:38:55.617 IST [18032] STATEMENT:  insert into advisor values ('98988', '76766');
+2019-02-04 22:38:55.617 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.617 IST [18032] STATEMENT:  insert into time_slot values ('A', 'M', '8', '0', '8', '50');
+2019-02-04 22:38:55.618 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.618 IST [18032] STATEMENT:  insert into time_slot values ('A', 'W', '8', '0', '8', '50');
+2019-02-04 22:38:55.618 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.618 IST [18032] STATEMENT:  insert into time_slot values ('A', 'F', '8', '0', '8', '50');
+2019-02-04 22:38:55.618 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.618 IST [18032] STATEMENT:  insert into time_slot values ('B', 'M', '9', '0', '9', '50');
+2019-02-04 22:38:55.618 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.618 IST [18032] STATEMENT:  insert into time_slot values ('B', 'W', '9', '0', '9', '50');
+2019-02-04 22:38:55.618 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.618 IST [18032] STATEMENT:  insert into time_slot values ('B', 'F', '9', '0', '9', '50');
+2019-02-04 22:38:55.619 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.619 IST [18032] STATEMENT:  insert into time_slot values ('C', 'M', '11', '0', '11', '50');
+2019-02-04 22:38:55.619 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.619 IST [18032] STATEMENT:  insert into time_slot values ('C', 'W', '11', '0', '11', '50');
+2019-02-04 22:38:55.619 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.619 IST [18032] STATEMENT:  insert into time_slot values ('C', 'F', '11', '0', '11', '50');
+2019-02-04 22:38:55.619 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.619 IST [18032] STATEMENT:  insert into time_slot values ('D', 'M', '13', '0', '13', '50');
+2019-02-04 22:38:55.620 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.620 IST [18032] STATEMENT:  insert into time_slot values ('D', 'W', '13', '0', '13', '50');
+2019-02-04 22:38:55.620 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.620 IST [18032] STATEMENT:  insert into time_slot values ('D', 'F', '13', '0', '13', '50');
+2019-02-04 22:38:55.620 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.620 IST [18032] STATEMENT:  insert into time_slot values ('E', 'T', '10', '30', '11', '45 ');
+2019-02-04 22:38:55.620 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.620 IST [18032] STATEMENT:  insert into time_slot values ('E', 'R', '10', '30', '11', '45 ');
+2019-02-04 22:38:55.620 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.620 IST [18032] STATEMENT:  insert into time_slot values ('F', 'T', '14', '30', '15', '45 ');
+2019-02-04 22:38:55.621 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.621 IST [18032] STATEMENT:  insert into time_slot values ('F', 'R', '14', '30', '15', '45 ');
+2019-02-04 22:38:55.621 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.621 IST [18032] STATEMENT:  insert into time_slot values ('G', 'M', '16', '0', '16', '50');
+2019-02-04 22:38:55.621 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.621 IST [18032] STATEMENT:  insert into time_slot values ('G', 'W', '16', '0', '16', '50');
+2019-02-04 22:38:55.621 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.621 IST [18032] STATEMENT:  insert into time_slot values ('G', 'F', '16', '0', '16', '50');
+2019-02-04 22:38:55.622 IST [18032] ERROR:  relation "time_slot" does not exist at character 13
+2019-02-04 22:38:55.622 IST [18032] STATEMENT:  insert into time_slot values ('H', 'W', '10', '0', '12', '30');
+2019-02-04 22:38:55.622 IST [18032] ERROR:  relation "prereq" does not exist at character 13
+2019-02-04 22:38:55.622 IST [18032] STATEMENT:  insert into prereq values ('BIO-301', 'BIO-101');
+2019-02-04 22:38:55.622 IST [18032] ERROR:  relation "prereq" does not exist at character 13
+2019-02-04 22:38:55.622 IST [18032] STATEMENT:  insert into prereq values ('BIO-399', 'BIO-101');
+2019-02-04 22:38:55.622 IST [18032] ERROR:  relation "prereq" does not exist at character 13
+2019-02-04 22:38:55.622 IST [18032] STATEMENT:  insert into prereq values ('CS-190', 'CS-101');
+2019-02-04 22:38:55.622 IST [18032] ERROR:  relation "prereq" does not exist at character 13
+2019-02-04 22:38:55.622 IST [18032] STATEMENT:  insert into prereq values ('CS-315', 'CS-101');
+2019-02-04 22:38:55.623 IST [18032] ERROR:  relation "prereq" does not exist at character 13
+2019-02-04 22:38:55.623 IST [18032] STATEMENT:  insert into prereq values ('CS-319', 'CS-101');
+2019-02-04 22:38:55.623 IST [18032] ERROR:  relation "prereq" does not exist at character 13
+2019-02-04 22:38:55.623 IST [18032] STATEMENT:  insert into prereq values ('CS-347', 'CS-101');
+2019-02-04 22:38:55.623 IST [18032] ERROR:  relation "prereq" does not exist at character 13
+2019-02-04 22:38:55.623 IST [18032] STATEMENT:  insert into prereq values ('EE-181', 'PHY-101');
+2019-02-04 22:40:51.181 IST [18048] ERROR:  relation "student" does not exist at character 15
+2019-02-04 22:40:51.181 IST [18048] STATEMENT:  select * from student;
+2019-02-04 22:41:23.803 IST [18061] ERROR:  relation "classroom" already exists
+2019-02-04 22:41:23.803 IST [18061] STATEMENT:  create table classroom
+		(building		varchar(15),
+		 room_number		varchar(7),
+		 capacity		numeric(4,0),
+		 primary key (building, room_number)
+		);
+2019-02-04 22:41:23.803 IST [18061] ERROR:  relation "department" already exists
+2019-02-04 22:41:23.803 IST [18061] STATEMENT:  create table department
+		(dept_name		varchar(20), 
+		 building		varchar(15), 
+		 budget		        numeric(12,2) check (budget > 0),
+		 primary key (dept_name)
+		);
+2019-02-04 22:41:23.804 IST [18061] ERROR:  relation "course" already exists
+2019-02-04 22:41:23.804 IST [18061] STATEMENT:  create table course
+		(course_id		varchar(8), 
+		 title			varchar(50), 
+		 dept_name		varchar(20),
+		 credits		numeric(2,0) check (credits > 0),
+		 primary key (course_id),
+		 foreign key (dept_name) references department
+			on delete set null
+		);
+2019-02-04 22:41:23.804 IST [18061] ERROR:  relation "instructor" already exists
+2019-02-04 22:41:23.804 IST [18061] STATEMENT:  create table instructor
+		(ID			varchar(5), 
+		 name			varchar(20) not null, 
+		 dept_name		varchar(20), 
+		 salary			numeric(8,2) check (salary > 29000),
+		 primary key (ID),
+		 foreign key (dept_name) references department
+			on delete set null
+		);
+2019-02-04 22:41:23.805 IST [18061] ERROR:  relation "section" already exists
+2019-02-04 22:41:23.805 IST [18061] STATEMENT:  create table section
+		(course_id		varchar(8), 
+	         sec_id			varchar(8),
+		 semester		varchar(6)
+			check (semester in ('Fall', 'Winter', 'Spring', 'Summer')), 
+		 year			numeric(4,0) check (year > 1701 and year < 2100), 
+		 building		varchar(15),
+		 room_number		varchar(7),
+		 time_slot_id		varchar(4),
+		 primary key (course_id, sec_id, semester, year),
+		 foreign key (course_id) references course
+			on delete cascade,
+		 foreign key (building, room_number) references classroom
+			on delete set null
+		);
+2019-02-04 22:41:23.805 IST [18061] ERROR:  relation "teaches" already exists
+2019-02-04 22:41:23.805 IST [18061] STATEMENT:  create table teaches
+		(ID			varchar(5), 
+		 course_id		varchar(8),
+		 sec_id			varchar(8), 
+		 semester		varchar(6),
+		 year			numeric(4,0),
+		 primary key (ID, course_id, sec_id, semester, year),
+		 foreign key (course_id,sec_id, semester, year) references section
+			on delete cascade,
+		 foreign key (ID) references instructor
+			on delete cascade
+		);
+2019-02-04 22:41:23.806 IST [18061] ERROR:  relation "student" already exists
+2019-02-04 22:41:23.806 IST [18061] STATEMENT:  create table student
+		(ID			varchar(5), 
+		 name			varchar(20) not null, 
+		 dept_name		varchar(20), 
+		 tot_cred		numeric(3,0) check (tot_cred >= 0),
+		 primary key (ID),
+		 foreign key (dept_name) references department
+			on delete set null
+		);
+2019-02-04 22:41:23.806 IST [18061] ERROR:  relation "takes" already exists
+2019-02-04 22:41:23.806 IST [18061] STATEMENT:  create table takes
+		(ID			varchar(5), 
+		 course_id		varchar(8),
+		 sec_id			varchar(8), 
+		 semester		varchar(6),
+		 year			numeric(4,0),
+		 grade		        varchar(2),
+		 primary key (ID, course_id, sec_id, semester, year),
+		 foreign key (course_id,sec_id, semester, year) references section
+			on delete cascade,
+		 foreign key (ID) references student
+			on delete cascade
+		);
+2019-02-04 22:41:23.807 IST [18061] ERROR:  relation "advisor" already exists
+2019-02-04 22:41:23.807 IST [18061] STATEMENT:  create table advisor
+		(s_ID			varchar(5),
+		 i_ID			varchar(5),
+		 primary key (s_ID),
+		 foreign key (i_ID) references instructor (ID)
+			on delete set null,
+		 foreign key (s_ID) references student (ID)
+			on delete cascade
+		);
+2019-02-04 22:41:23.807 IST [18061] ERROR:  relation "time_slot" already exists
+2019-02-04 22:41:23.807 IST [18061] STATEMENT:  create table time_slot
+		(time_slot_id		varchar(4),
+		 day			varchar(1),
+		 start_hr		numeric(2) check (start_hr >= 0 and start_hr < 24),
+		 start_min		numeric(2) check (start_min >= 0 and start_min < 60),
+		 end_hr			numeric(2) check (end_hr >= 0 and end_hr < 24),
+		 end_min		numeric(2) check (end_min >= 0 and end_min < 60),
+		 primary key (time_slot_id, day, start_hr, start_min)
+		);
+2019-02-04 22:41:23.808 IST [18061] ERROR:  relation "prereq" already exists
+2019-02-04 22:41:23.808 IST [18061] STATEMENT:  create table prereq
+		(course_id		varchar(8), 
+		 prereq_id		varchar(8),
+		 primary key (course_id, prereq_id),
+		 foreign key (course_id) references course
+			on delete cascade,
+		 foreign key (prereq_id) references course
+		);
+2019-02-04 22:42:02.190 IST [18068] ERROR:  relation "student" does not exist at character 15
+2019-02-04 22:42:02.190 IST [18068] STATEMENT:  select * from student;
+2019-02-04 22:42:39.875 IST [18068] ERROR:  relation "takes" does not exist at character 15
+2019-02-04 22:42:39.875 IST [18068] STATEMENT:  select * from takes;
+2019-02-04 22:42:47.192 IST [18068] ERROR:  relation "advisor" does not exist at character 15
+2019-02-04 22:42:47.192 IST [18068] STATEMENT:  select * from advisor;
+2019-02-04 22:44:53.725 IST [18110] ERROR:  relation "test" does not exist at character 15
+2019-02-04 22:44:53.725 IST [18110] STATEMENT:  select * from test;
