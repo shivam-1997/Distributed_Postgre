@@ -19,6 +19,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdarg.h>
+#define _GNU_SOURCE
 
 #include "postgres.h"
 
@@ -83,6 +84,7 @@
 #include "mb/pg_wchar.h"
 
 
+#define QUERY_SIZE 100
 /* ----------------
  *		global variables
  * ----------------
@@ -199,31 +201,46 @@ static void log_disconnections(int code, Datum arg);
 static void enable_statement_timeout(void);
 static void disable_statement_timeout(void);
 
+
+char* query;
+char* query1;
+char* query2;
+char* query3;
+char* final_query;
+char* query_string_rewritten;
+char* temp;
+char* line;
+
 /**
  * Functions added by Rahul Sharma
  */
 
 
 /**
- * Print function
+ * Print function with variable number of arguments
  */
 void my_print_function(int count,...){
 	printf("************** Printing *******************\n");
+	fflush(stdout);
 	va_list ap;
 	va_start(ap,count);
 	int i;
 	for(i=0;i<count;i++){
 		printf("%s\n",va_arg(ap,char*));
+		fflush(stdout);
 	}
 	va_end(ap);
 	printf("*********************************************\n");
+	fflush(stdout);
 }
 
 /**
  * Make simple query by appending identifier for each table
  */
 char* make_query(char* create,char* table,char* table_name,char* attributes, char* identifier){
-	char* query = (char*)malloc(1000*sizeof(char));
+	if(query) free(query);
+	query = (char*)malloc(QUERY_SIZE*sizeof(char));
+//	char query[1000]="";
 	strcpy(query,create);
 	strcat(query," ");
 	strcat(query,table);
@@ -241,7 +258,10 @@ char* make_query(char* create,char* table,char* table_name,char* attributes, cha
  * Make simple select query by appending identifier for each table
  */
 char* make_select_query(char* select,char* attributes,char* from,char* table_name, char* identifier){
-	char* query = (char*)malloc(1000*sizeof(char));
+	if(query)
+		free(query);
+	query = (char*)malloc(QUERY_SIZE*sizeof(char));
+//	char query[1000]="";
 	strcpy(query,select);
 	strcat(query," ");
 	strcat(query,attributes);
@@ -256,12 +276,38 @@ char* make_select_query(char* select,char* attributes,char* from,char* table_nam
 }
 
 
+/**
+ * Make simple select query by appending identifier for each table
+ */
+char* make_insert_query(char* insert,char* into,char* table_name, char* identifier,char* attributes){
+	printf("Inside make insert query\n");
+	if(query) free(query);
+	query = (char*)malloc(QUERY_SIZE*sizeof(char));
+//	char query[1000]="";
+	strcpy(query,insert);
+	strcat(query," ");
+	strcat(query,into);
+	strcat(query," ");
+	strcat(query,table_name);
+	strcat(query,"_");
+	strcat(query,identifier);
+	strcat(query," ");
+	strcat(query,attributes);
+	strcat(query,";");
+	printf("Query : %s\n",query);
+	return query;
+}
+
+
+
 
 /**
  * Make simple select query with condition by appending identifier for each table
  */
 char* make_select_with_condition_query(char* select,char* attributes,char* from,char* table_name, char* identifier,char* where, char* conditions){
-	char* query = (char*)malloc(1000*sizeof(char));
+	if(query) free(query);
+	query = (char*)malloc(QUERY_SIZE*sizeof(char));
+	//char query[1000]="";
 	strcpy(query,select);
 	strcat(query," ");
 	strcat(query,attributes);
@@ -286,27 +332,34 @@ char* make_select_with_condition_query(char* select,char* attributes,char* from,
  */
 char* make_query_list(char* create,char* table,char* table_name,char* attributes){
 
-	char* query1 = (char*)malloc(1000*sizeof(char));
-	char* query2 = (char*)malloc(1000*sizeof(char));
-	char* query3 = (char*)malloc(1000*sizeof(char));
+	if(query1) free(query1);
+	if(query2) free(query2);
+	if(query3) free(query3);
+	if(final_query) free(final_query);
+
+	query1 = (char*)malloc(QUERY_SIZE*sizeof(char));
+	query2 = (char*)malloc(QUERY_SIZE*sizeof(char));
+	query3 = (char*)malloc(QUERY_SIZE*sizeof(char));
 
 	query1 = make_query(create,table,table_name,attributes,"1");
-	query2 = make_query(create,table,table_name,attributes,"2");
-	query3 = make_query(create,table,table_name,attributes,"3");
-
-	printf("Query1 : %s\n",query1);
-	printf("Query2 : %s\n",query2);
-	printf("Query3 : %s\n",query3);
-
-	char* final_query = (char*)malloc(3*sizeof(query1));
+	final_query = (char*)malloc(3*sizeof(query1));
 	strcpy(final_query,query1);
+	printf("Query1 : %s\n",query1);
+	fflush(stdout);
+
+	query2 = make_query(create,table,table_name,attributes,"2");
 	strcat(final_query,query2);
+	printf("Query2 : %s\n",query2);
+	fflush(stdout);
+
+	query3 = make_query(create,table,table_name,attributes,"3");
 	strcat(final_query,query3);
+	printf("Query3 : %s\n",query3);
+	fflush(stdout);
 
 	printf("Final Query : %s\n",final_query);
-    free(query1);
-    free(query2);
-    free(query3);
+	fflush(stdout);
+
 	return final_query;
 }
 
@@ -314,28 +367,36 @@ char* make_query_list(char* create,char* table,char* table_name,char* attributes
  *	Make multiple select queries from single queries separated by semi-colon
  */
 char* make_select_query_list(char* select,char* attributes, char* from, char* table_name){
-	char* query1 = (char*)malloc(1000*sizeof(char));
-	char* query2 = (char*)malloc(1000*sizeof(char));
-	char* query3 = (char*)malloc(1000*sizeof(char));
+
+	if(query1) free(query1);
+	if(query2) free(query2);
+	if(query3) free(query3);
+	if(final_query) free(final_query);
+
+	query1 = (char*)malloc(QUERY_SIZE*sizeof(char));
+	query2 = (char*)malloc(QUERY_SIZE*sizeof(char));
+	query3 = (char*)malloc(QUERY_SIZE*sizeof(char));
 
 	query1 = make_select_query(select,attributes,from,table_name,"1");
-	query2 = make_select_query(select,attributes,from,table_name,"2");
-	query3 = make_select_query(select,attributes,from,table_name,"3");
-
 	printf("Query1 : %s\n",query1);
-	printf("Query2 : %s\n",query2);
-	printf("Query3 : %s\n",query3);
+	fflush(stdout);
 
 	char* final_query = (char*)malloc(3*sizeof(query1));
 	strcpy(final_query,query1);
+
+	query2 = make_select_query(select,attributes,from,table_name,"2");
+	printf("Query2 : %s\n",query2);
+	fflush(stdout);
 	strcat(final_query,query2);
+
+	query3 = make_select_query(select,attributes,from,table_name,"3");
+	printf("Query3 : %s\n",query3);
+	fflush(stdout);
 	strcat(final_query,query3);
 
 	printf("Final Query : %s\n",final_query);
+	fflush(stdout);
 
-	free(query1);
-	free(query2);
-	free(query3);
 
 	return final_query;
 
@@ -346,30 +407,52 @@ char* make_select_query_list(char* select,char* attributes, char* from, char* ta
  *	Make multiple select queries with conditions from single queries separated by semi-colon
  */
 char* make_select_with_condition_query_list(char* select,char* attributes, char* from, char* table_name,char* where,char* conditions){
-	char* query1 = (char*)malloc(1000*sizeof(char));
-	char* query2 = (char*)malloc(1000*sizeof(char));
-	char* query3 = (char*)malloc(1000*sizeof(char));
+
+	if(query1) free(query1);
+	if(query2) free(query2);
+	if(query3) free(query3);
+	if(final_query) free(final_query);
+
+	query1 = (char*)malloc(QUERY_SIZE*sizeof(char));
+	query2 = (char*)malloc(QUERY_SIZE*sizeof(char));
+	query3 = (char*)malloc(QUERY_SIZE*sizeof(char));
 
 	query1 = make_select_with_condition_query(select,attributes,from,table_name,"1",where,conditions);
-	query2 = make_select_with_condition_query(select,attributes,from,table_name,"2",where,conditions);
-	query3 = make_select_with_condition_query(select,attributes,from,table_name,"3",where,conditions);
-
 	printf("Query1 : %s\n",query1);
-	printf("Query2 : %s\n",query2);
-	printf("Query3 : %s\n",query3);
-
+	fflush(stdout);
 	char* final_query = (char*)malloc(3*sizeof(query1));
 	strcpy(final_query,query1);
+
+	query2 = make_select_with_condition_query(select,attributes,from,table_name,"2",where,conditions);
+	printf("Query2 : %s\n",query2);
+	fflush(stdout);
 	strcat(final_query,query2);
+
+	query3 = make_select_with_condition_query(select,attributes,from,table_name,"3",where,conditions);
+	printf("Query3 : %s\n",query3);
+	fflush(stdout);
 	strcat(final_query,query3);
 
-	printf("Final Query : %s\n",final_query);
+	printf("Final Query : %s\n",final_query);fflush(stdout);
 
-	free(query1);
-	free(query2);
-	free(query3);
 	return final_query;
 
+}
+
+/**
+ * Create entry for table_name
+ */
+void createEntry(char* fileName,char* table_name,char* identifier){
+	char* entry = (char*)malloc(sizeof(table_name)+2*sizeof(char));
+	strcpy(entry,table_name);
+	strcat(entry," ");
+	strcat(entry,identifier);
+	strcat(entry,"\n");
+	printf("Entry : %s",entry);
+	File* fp = fopen(fileName,"a");
+	fprintf(fp,"%s",entry);
+	free(entry);
+	fclose(fp);
 }
 
 
@@ -378,28 +461,136 @@ char* make_select_with_condition_query_list(char* select,char* attributes, char*
  */
 char* create_tables(char* query){
 	printf("Query : %s\n",query);
+	fflush(stdout);
 	printf("Inside Create Tables\n");
-
+	fflush(stdout);
 	char separator[] = " ";
 	char separator2[] = "(";
 	char separator3[] = ";";
 
 	char* create = strtok(query,separator);  // keyword create
 	printf("Token 1 : %s\n",create);
-
+	fflush(stdout);
 	char* table = strtok(NULL,separator);  // keyword table
 	printf("Token 2 : %s\n",table);
+	fflush(stdout);
 
 	char* table_name = strtok(NULL,separator2); // table_name
 	printf("table name : %s\n",table_name);
+	fflush(stdout);
 
 	char* token = strtok(NULL,separator3); // attributes
 	printf("Token 4 : %s\n",token);
+	fflush(stdout);
+
 	char attributes[1000] = "(";
 	strcat(attributes,token);
 	printf("Attributes : %s\n",attributes);
+	fflush(stdout);
 
+	char* fileName = "/home/rahulsharma/Desktop/PostGreSQl/postgresql-11.1/created_files/table_identifier.txt";
+	createEntry(fileName,table_name,"1");
 	return make_query_list(create,table,table_name,attributes);
+}
+
+/**
+ * Count occurences of any particular character
+ */
+int countCharacter(char* str,char c){
+	int cnt;
+	for (cnt=0; str[cnt]; str[cnt]==c ? cnt++ : *str++);
+	return cnt;
+}
+
+/**
+ * return true if number of open and close braces differs
+ */
+bool checkBraces(char* str){
+    int cnt_open_braces = countCharacter(str,'(');
+    int cnt_close_braces = countCharacter(str,')');
+    return (cnt_open_braces != cnt_close_braces);
+}
+
+/**
+ * increment the identifier by one for a particular table_name in the file
+ */
+void modifyFile(char* fileName,char* table_name, char* identifier){
+	char* modified_line = (char*)malloc(sizeof(table_name)+3*sizeof(identifier));
+	strcpy(modified_line,table_name);
+	strcat(modified_line," ");
+	//printf("1\n");
+	//printf("Identified: %s\n",identifier);
+	int id = (atoi(identifier)%3)+1;
+	//printf("id = %d\n",id);
+	char modified_identifier[2];
+	sprintf(modified_identifier,"%d",id);
+	//printf("2\n");
+	//printf("%s\n",modified_identifier);
+	strcat(modified_line,modified_identifier);
+    printf("Modified Line : %s\n",modified_line);  //  prints "table_name incremented_identifier"
+
+
+    char* tempFileName = "/home/rahulsharma/Desktop/PostGreSQl/postgresql-11.1/created_files/temp.txt";
+    FILE* fp = fopen(fileName,"r");
+    FILE* fp_temp = fopen(tempFileName,"w");
+    //fseek(fp, 0, SEEK_END);
+    //fprintf(fp,"%s\n",modified_line);
+    free(line);
+    line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    if (fp == NULL || fp_temp==NULL)         // References : https://www.programmingsimplified.com/c-program-read-file
+    {
+	  perror("Error while opening the file.\n");
+	  exit(EXIT_FAILURE);
+    }
+    while ((read = getline(&line, &len, fp)) != -1) {
+		//printf("Line : %s\n",line);
+		if(strstr(line,table_name)!=NULL){
+			fprintf(fp_temp,"%s",modified_line);
+		}
+		else{
+			fprintf(fp_temp,"%s",line);
+		}
+	}
+    remove(fileName);
+    rename(tempFileName,fileName);
+
+    fclose(fp);
+    fclose(fp_temp);
+	free(modified_line);
+}
+
+/**
+ * Read the identifier for the table , in which tuple is to be inserted
+ */
+char* readFromFile(char* fileName,char* table_name){
+	FILE* fp = fopen(fileName,"r");
+	free(line);
+	line = NULL;
+	size_t len = 0;
+	ssize_t read;
+	char* identifier = NULL;
+	if (fp == NULL)         // References : https://www.programmingsimplified.com/c-program-read-file
+   {
+	  perror("Error while opening the file.\n");
+	  exit(EXIT_FAILURE);
+   }
+	while ((read = getline(&line, &len, fp)) != -1) {
+		//printf("Line : %s\n",line);
+		if(strstr(line,table_name)!=NULL){
+			//printf("Matched line : %s\n",line);
+			char* token = strtok(line," ");
+			identifier = strtok(NULL,"\n");
+			//printf("Identifier : %s\n",identifier);
+			//printf("table name : %s\n",table_name);
+			//modifyFile(fileName,table_name,identifier);
+			break;
+		}
+	}
+	modifyFile(fileName,table_name,identifier);
+	fclose(fp);
+	return identifier;
 }
 
 
@@ -407,8 +598,44 @@ char* create_tables(char* query){
  * Insert Function Added by Rahul Sharma
  */
 char* insert_tuple(char* query){
-	char separator[1] = {' '};
-    return separator;
+	char* separator = " ";
+	char* separator2 = " (";
+	char* separator3 = ";";
+	// Format : insert into table_name attributes;
+
+	char* insert = strtok(query,separator);  // keyword select
+	printf("Token 1 : %s\n",insert);fflush(stdout);
+
+	char* into = strtok(NULL,separator);  // keyword into
+	printf("Token 2 : %s\n",into);fflush(stdout);
+
+	char* table_name = strtok(NULL,separator2); // table_name
+	printf("Table_name : %s\n",table_name);fflush(stdout);
+
+	char* token = strtok(NULL,separator3);  // attributes list // later : cases to handle space between attributes list
+	printf("Token 4 : %s\n",token);fflush(stdout);
+
+	char attributes[QUERY_SIZE];
+	bool isBracesNeededToAppend = checkBraces(token);
+    if(isBracesNeededToAppend){
+        attributes[0] = '(';
+		strcat(attributes,token);
+		printf("Attributes : %s\n",attributes);
+		fflush(stdout);
+    }
+    else{
+    	strcpy(attributes,token);
+    	printf("Attributes : %s\n",attributes);
+    	fflush(stdout);
+    }
+
+    /*
+     * UNIMLEMENTED // change the path of the file
+     */
+    char* fileName = "/home/rahulsharma/Desktop/PostGreSQl/postgresql-11.1/created_files/table_identifier.txt";
+    char* identifier = readFromFile(fileName,table_name);
+
+    return make_insert_query(insert,into,table_name,identifier,attributes);
 }
 
 
@@ -416,70 +643,91 @@ char* insert_tuple(char* query){
  * Select Function Added by Rahul Sharma
  */
 char* select_tuples(char* query){
-	printf("Query : %s\n",query);
-	printf("Inside Select Tuples\n");
+	printf("Query : %s\n",query);fflush(stdout);
+	printf("Inside Select Tuples\n");fflush(stdout);
 
-	char separator[] = " ";
-	char separator2[] = " from";
-	char separator3[] = ";";
-	char separator4[] = " where";
+	char* separator = " ";
+	//char* separator2 = "from";
+	char* separator3 = ";";
+	//char* separator4 = "where";
 
 	char* select = strtok(query,separator);  // keyword select
-	printf("Token 1 : %s\n",select);
+	printf("Token 1 : %s\n",select);fflush(stdout);
 
-	char* attributes = strtok(NULL,separator2);  // keyword table
-	printf("Token 2 : %s\n",attributes);
+	char* attributes = strtok(NULL,separator);  // attributes list // later : cases to handle space between attributes list
+	printf("Token 2 : %s\n",attributes);fflush(stdout);
 
-	char* from = strtok(NULL,separator); // attributes
-	printf("From : %s\n",from);
+	char* from = strtok(NULL,separator); // keyword from
+	printf("From : %s\n",from);fflush(stdout);
 
-	char* table_name_with_conditions = strtok(NULL,separator3); // table_name
+	char* table_name_with_conditions = strtok(NULL,separator3); // table_name_with_conditions
 	printf("table name with conditions : %s\n",table_name_with_conditions);
+	fflush(stdout);
 
 	//strcpy(query,table_name_with_conditions);
-	char* temp = (char*)malloc(sizeof(table_name_with_conditions));
+	free(temp);
+	temp = (char*)malloc(sizeof(table_name_with_conditions));
 	strcpy(temp,table_name_with_conditions);
+    printf("Temp : %s\n",temp);
 
-
-	char* table_name = strtok(temp,separator4); // table_name
-	printf("table name : %s\n",table_name);
-    //free(temp);
-
-	if(!strcmp(table_name,table_name_with_conditions)){ //no where clause
-		// nothing to do here;
-		printf("No where clause\n");
-		my_print_function(4,select,attributes,from,table_name);
-		return make_select_query_list(select,attributes,from,table_name);
-	}
-	else{  // where clause present
-		printf("Where clause present\n");
+	if(strstr(table_name_with_conditions,"where")!=NULL){	//where clause is present
+		printf("Temp : %s\n",temp);
+		char* table_name = strtok(temp,separator); // table_name
+		printf("table name : %s\n",table_name);
+		fflush(stdout);//free(temp);
+		printf("Where clause present\n");fflush(stdout);
 		char* where = strtok(NULL,separator); // attributes
-		printf("Where : %s\n",where);
+		printf("Where : %s\n",where);fflush(stdout);
 
 		char* conditions = strtok(NULL,"");
-		printf("Conditions : %s\n",conditions);
+		printf("Conditions : %s\n",conditions);fflush(stdout);
 
 		my_print_function(4,select,attributes,from,table_name);
 		return make_select_with_condition_query_list(select,attributes,from,table_name,where,conditions);
 	}
+	else{
+		printf("No where clause\n");fflush(stdout);
+		my_print_function(4,select,attributes,from,table_name_with_conditions);
+		return make_select_query_list(select,attributes,from,table_name_with_conditions);
+	}
 
+	/*
+	if(!strcmp(table_name,table_name_with_conditions)){ //no where clause
+		// nothing to do here;
+		printf("No where clause\n");fflush(stdout);
+		my_print_function(4,select,attributes,from,table_name);
+		return make_select_query_list(select,attributes,from,table_name);
+	}
+	else{  // where clause present
+		printf("Where clause present\n");fflush(stdout);
+		char* where = strtok(NULL,separator); // attributes
+		printf("Where : %s\n",where);fflush(stdout);
+
+		char* conditions = strtok(NULL,"");
+		printf("Conditions : %s\n",conditions);fflush(stdout);
+
+		my_print_function(4,select,attributes,from,table_name);
+		return make_select_with_condition_query_list(select,attributes,from,table_name,where,conditions);
+	}*/
 }
-
 
 
 /**
  *  Query Rewrite Function Added By Rahul Sharma
  */
 char* query_rewrite(char *query){
-	printf("Inside Query Rewrite : \n");
-	char* original_query = (char*)malloc(sizeof(query));
+	printf("Inside Query Rewrite : \n");fflush(stdout);
+	//char* original_query = (char*)malloc(sizeof(query));
+	char original_query[1000];
 	//char original_query[1000];
+	memset(original_query,'\0',sizeof(original_query));
 	strcpy(original_query,query);
-	printf("Original Query : %s\n",original_query);
-	char separator[1] = " ";
+	printf("Original Query : %s\n",original_query);fflush(stdout);
+
+	char separator[] = " ";
 	char* token = strtok(original_query,separator);
-	printf("First Token : %s\n",token);
-	free(original_query);
+	printf("First Token : %s\n",token);fflush(stdout);
+	//free(original_query);
 
 	if(!strcmp("create",token) || !strcmp("CREATE",token)){
 		return create_tables(query);
@@ -488,10 +736,14 @@ char* query_rewrite(char *query){
 		return insert_tuple(query);
 	}
 	else if(!strcmp("select",token) || !strcmp("SELECT",token)){
+
 		return select_tuples(query);
 	}
 }
 
+/**
+ * End : Functions added by Rahul Sharma
+ */
 
 
 /* ----------------------------------------------------------------
@@ -1001,7 +1253,7 @@ pg_parse_query(const char *query_string)
  * NOTE: for reasons mentioned above, this must be separate from raw parsing.
  */
 List *
-pg_analyze_and_rewrite(RawStmt *parsetree, const char *query_string,
+pg_analyze_and_rewrite(RawStmt *parsetree,const char *query_string,
 					   Oid *paramTypes, int numParams,
 					   QueryEnvironment *queryEnv)
 {
@@ -1241,12 +1493,15 @@ pg_plan_queries(List *querytrees, int cursorOptions, ParamListInfo boundParams)
  * Execute a "simple Query" protocol message.
  */
 static void
-exec_simple_query(const char *query_string)
+exec_simple_query(const char *query_string) // Removed const keyword
 {
 	// Added By Rahul Sharma
 	printf("Original Query : %s\n",query_string);
-	query_string = query_rewrite(query_string);
-	printf("Modified Query : %s\n",query_string);
+	fflush(stdout);
+	free(query_string_rewritten);
+	query_string_rewritten = query_rewrite(query_string);
+	printf("Modified Query : %s\n",query_string_rewritten);
+	fflush(stdout);
 	// End
 	CommandDest dest = whereToSendOutput;
 	MemoryContext oldcontext;
@@ -1260,11 +1515,11 @@ exec_simple_query(const char *query_string)
 	/*
 	 * Report query to various monitoring facilities.
 	 */
-	debug_query_string = query_string;
+	debug_query_string = query_string_rewritten;
 
-	pgstat_report_activity(STATE_RUNNING, query_string);
+	pgstat_report_activity(STATE_RUNNING, query_string_rewritten);
 
-	TRACE_POSTGRESQL_QUERY_START(query_string);
+	TRACE_POSTGRESQL_QUERY_START(query_string_rewritten);
 
 	/*
 	 * We use save_log_statement_stats so ShowUsage doesn't report incorrect
@@ -1299,13 +1554,13 @@ exec_simple_query(const char *query_string)
 	 * Do basic parsing of the query or queries (this should be safe even if
 	 * we are in aborted transaction state!)
 	 */
-	parsetree_list = pg_parse_query(query_string);
+	parsetree_list = pg_parse_query(query_string_rewritten);
 
 	/* Log immediately if dictated by log_statement */
 	if (check_log_statement(parsetree_list))
 	{
 		ereport(LOG,
-				(errmsg("statement: %s", query_string),
+				(errmsg("statement: %s", query_string_rewritten),
 				 errhidestmt(true),
 				 errdetail_execute(parsetree_list)));
 		was_logged = true;
@@ -1402,7 +1657,7 @@ exec_simple_query(const char *query_string)
 		 */
 		oldcontext = MemoryContextSwitchTo(MessageContext);
 
-		querytree_list = pg_analyze_and_rewrite(parsetree, query_string,
+		querytree_list = pg_analyze_and_rewrite(parsetree, query_string_rewritten,
 												NULL, 0, NULL);
 
 		plantree_list = pg_plan_queries(querytree_list,
@@ -1430,7 +1685,7 @@ exec_simple_query(const char *query_string)
 		 */
 		PortalDefineQuery(portal,
 						  NULL,
-						  query_string,
+						  query_string_rewritten,
 						  commandTag,
 						  plantree_list,
 						  NULL);
@@ -1556,7 +1811,7 @@ exec_simple_query(const char *query_string)
 		case 2:
 			ereport(LOG,
 					(errmsg("duration: %s ms  statement: %s",
-							msec_str, query_string),
+							msec_str, query_string_rewritten),
 					 errhidestmt(true),
 					 errdetail_execute(parsetree_list)));
 			break;
@@ -1565,7 +1820,7 @@ exec_simple_query(const char *query_string)
 	if (save_log_statement_stats)
 		ShowUsage("QUERY STATISTICS");
 
-	TRACE_POSTGRESQL_QUERY_DONE(query_string);
+	TRACE_POSTGRESQL_QUERY_DONE(query_string_rewritten);
 
 	debug_query_string = NULL;
 }
@@ -4500,7 +4755,8 @@ PostgresMain(int argc, char *argv[],
 		{
 			case 'Q':			/* simple query */
 				{
-					const char *query_string;
+					//const char *query_string;
+					char *query_string;   //Removed const keyword
 
 					/* Set statement_timestamp() */
 					SetCurrentStatementStartTimestamp();
@@ -4511,11 +4767,13 @@ PostgresMain(int argc, char *argv[],
 					if (am_walsender)
 					{
 						if (!exec_replication_command(query_string))
+							//printf("Postgres ; %s\n",query_string);
 							exec_simple_query(query_string);
 					}
-					else
+					else{
+						//printf("Postgres ; %s\n",query_string);
 						exec_simple_query(query_string);
-
+					}
 					send_ready_for_query = true;
 				}
 				break;
